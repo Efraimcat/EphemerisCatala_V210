@@ -1,9 +1,12 @@
 package com.nicapp.EphemerisCatala_2;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +19,7 @@ import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ShareActionProvider;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -92,12 +96,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//        }
 // WebView
         if(mWebView.canGoBack()) {
             mWebView.goBack();
@@ -106,9 +104,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+//  ACTION BAR
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+// Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -120,14 +119,16 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+//noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            alertOneButton();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+//  MENU
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -138,18 +139,33 @@ public class MainActivity extends AppCompatActivity
             // Handle
         } else if (id == R.id.nav_share) {
 
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            String shareBodyText = "https://play.google.com/store/apps/details?id=com.nicapp.EphemerisCatala_2";
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Ephemeris Català");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
+            startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));
+
         } else if (id == R.id.nav_send) {
 
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.nicapp.EphemerisCatala_2");
-            sendIntent.setType("text/plain");
-            startActivity(sendIntent);
-
+            ActivityCompat.finishAffinity(this);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+//  Mensaje cabecera
+    public void alertOneButton() {
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle(R.string.Titol)
+                .setMessage(R.string.Missatge)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.cancel();
+                    }
+           }).show();
     }
 }
