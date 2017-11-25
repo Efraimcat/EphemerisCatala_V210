@@ -6,6 +6,7 @@
 
     <string name="action_settings">Ephemeris</string>
     <string name="BotoCorreo">Enviar un correo</string>
-    <string name="Missatge">Ephemeris. Efemèrides en Català. Santoral. Tal dia com avui. Onomàstica. Santoral de dia. Que va passar a Catalunya i Espanya un dia com avui. Diari del món. Les notícies més rellevants que van succeir un dia com avui. Edat contemporània. Des de 1789 als nostres dies. Hi haurà altres edicions amb diferents èpoques i països. Efemèrides.</string>
+    <string name="Missatge">Efemèrides en Català. Onomàstica. Santoral de dia. Que va passar a Catalunya i Espanya un dia com avui. Diari del món. Les notícies més rellevants que van succeir un dia com avui. Edat contemporània. Des de 1789 als nostres dies.</string>
     <string name="Titol">Ephemeris Català</string>
+    <string name="url_app">https://play.google.com/store/apps/details?id=com.nicapp.EphemerisCatala_2</string>
 </resources>
