@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "46933619462",
+    "firebase_url": "https://ephemeriscatala2.firebaseio.com",
+    "project_id": "ephemeriscatala2",
+    "storage_bucket": "ephemeriscatala2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46933619462:android:93f6c26f1a258fae",
+        "android_client_info": {
+          "package_name": "com.nicapp.EphemerisCatala_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "46933619462-h1pt8ijrffortkd6a689fjrpgof4eip4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nicapp.EphemerisCatala_2",
+            "certificate_hash": "3b25bb89c56575f3f61e143f0895c8a2c977de79"
+          }
+        },
+        {
+          "client_id": "46933619462-p63dvdofjc735cv44df0cv469ra0f0sq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nicapp.EphemerisCatala_2",
+            "certificate_hash": "08df90c300078d7f9fe3f30492ccacea8289e871"
+          }
+        },
+        {
+          "client_id": "46933619462-jr7igl0p8dcrj7e90nq8a29524cpn9sr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZGuqS08JJPrVlZCCq4cIrz84D79-0_w4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "46933619462-jr7igl0p8dcrj7e90nq8a29524cpn9sr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

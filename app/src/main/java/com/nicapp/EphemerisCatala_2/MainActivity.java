@@ -4,8 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
-//import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,7 +21,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-//import android.widget.ShareActionProvider;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -63,9 +62,6 @@ public class MainActivity extends AppCompatActivity
         mInterstitialAd.setAdUnitId("ca-app-pub-8256835306478664/1457642512");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener() {
-            public void onAdLoaded() {
-                displayInterstitial();
-            }
         });
 //  WEBVIEW
         mWebView = (WebView) findViewById(R.id.activity_main_webview);
@@ -85,7 +81,12 @@ public class MainActivity extends AppCompatActivity
 //
     public void displayInterstitial() {
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mInterstitialAd.show();
+                }
+            }, 10000); // After ten Sec
         }
     }
     @Override
@@ -95,12 +96,6 @@ public class MainActivity extends AppCompatActivity
             mWebView.goBack();
         } else {
 //      Exit
-            mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            mInterstitialAd.setAdListener(new AdListener() {
-                public void onAdLoaded() {
-                    displayInterstitial();
-                }
-            });
             super.onBackPressed();
         }
     }
@@ -136,16 +131,9 @@ public class MainActivity extends AppCompatActivity
             String shareBodyText = getString(R.string.url_app);
             sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Ephemeris Català");
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
-            startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));
+            startActivity(Intent.createChooser(sharingIntent, "Compartir"));
         } else if (id == R.id.nav_send) {
 //      Salir App
-            mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            mInterstitialAd.setAdListener(new AdListener() {
-                public void onAdLoaded() {
-                    displayInterstitial();
-                }
-            });
-//
             ActivityCompat.finishAffinity(this);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -169,6 +157,14 @@ public class MainActivity extends AppCompatActivity
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             bar.setVisibility(View.GONE);
+//  INTERSTITIAL
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            mInterstitialAd.setAdListener(new AdListener() {
+                public void onAdLoaded() {
+                    displayInterstitial();
+                }
+            });
+//
         }
 
         @Override
